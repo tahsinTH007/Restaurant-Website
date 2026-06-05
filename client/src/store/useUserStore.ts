@@ -1,7 +1,10 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import axios from "axios";
-import { LoginInputState, SignupInputState } from "@/schema/userSchema";
+import {
+  type LoginInputState,
+  type SignupInputState,
+} from "@/schema/userSchema";
 import { toast } from "sonner";
 
 const API_END_POINT = "https://food-app-yt.onrender.com/api/v1/user";
@@ -31,7 +34,7 @@ type UserState = {
   logout: () => Promise<void>;
   forgotPassword: (email: string) => Promise<void>;
   resetPassword: (token: string, newPassword: string) => Promise<void>;
-  updateProfile: (input: any) => Promise<void>;
+  updateProfile: (input: unknown) => Promise<void>;
 };
 
 export const useUserStore = create<UserState>()(
@@ -169,7 +172,7 @@ export const useUserStore = create<UserState>()(
           set({ loading: false });
         }
       },
-      updateProfile: async (input: any) => {
+      updateProfile: async (input: unknown) => {
         try {
           const response = await axios.put(
             `${API_END_POINT}/profile/update`,
