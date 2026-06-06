@@ -80,7 +80,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <div>
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+                <DropdownMenuTrigger>
                   <Button variant="outline" size="icon">
                     <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                     <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -110,7 +110,7 @@ const Navbar = () => {
             </Link>
             <div>
               <Avatar>
-                <AvatarImage src={user?.profilePicture} alt="profilephoto" />
+                <AvatarImage src={user?.profilePicture} alt="profile-photo" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </div>
@@ -132,7 +132,6 @@ const Navbar = () => {
           </div>
         </div>
         <div className="md:hidden lg:hidden">
-          {/* Mobile responsive  */}
           <MobileNavbar />
         </div>
       </div>
@@ -147,7 +146,7 @@ const MobileNavbar = () => {
   const { setTheme } = useThemeStore();
   return (
     <Sheet>
-      <SheetTrigger asChild>
+      <SheetTrigger>
         <Button
           size={"icon"}
           className="rounded-full bg-gray-200 text-black hover:bg-gray-200"
@@ -160,7 +159,7 @@ const MobileNavbar = () => {
         <SheetHeader className="flex flex-row items-center justify-between mt-2">
           <SheetTitle>PatelEats</SheetTitle>
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger>
               <Button variant="outline" size="icon">
                 <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -232,9 +231,9 @@ const MobileNavbar = () => {
               <AvatarImage src={user?.profilePicture} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <h1 className="font-bold">Patel Mernstack</h1>
+            <h1 className="font-bold">Patel MERN-stack</h1>
           </div>
-          <SheetClose asChild>
+          <SheetClose>
             {loading ? (
               <Button className="bg-orange hover:bg-hoverOrange">
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
