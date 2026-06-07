@@ -29,8 +29,15 @@ export const useRestaurantStore = create<RestaurantState>()(
             toast.success(response.data.message);
             set({ loading: false });
           }
-        } catch (error: any) {
-          toast.error(error.response.data.message);
+        } catch (error: unknown) {
+          if (axios.isAxiosError(error)) {
+            toast.error(
+              error.response?.data?.message || "Something went wrong",
+            );
+          } else {
+            toast.error("An unexpected error occurred");
+          }
+
           set({ loading: false });
         }
       },
@@ -41,9 +48,13 @@ export const useRestaurantStore = create<RestaurantState>()(
           if (response.data.success) {
             set({ loading: false, restaurant: response.data.restaurant });
           }
-        } catch (error: any) {
-          if (error.response.status === 404) {
-            set({ restaurant: null });
+        } catch (error: unknown) {
+          if (axios.isAxiosError(error)) {
+            if (error.response?.status === 404) {
+              set({ restaurant: null });
+            }
+          } else {
+            toast.error("An unexpected error occurred");
           }
           set({ loading: false });
         }
@@ -60,8 +71,14 @@ export const useRestaurantStore = create<RestaurantState>()(
             toast.success(response.data.message);
             set({ loading: false });
           }
-        } catch (error: any) {
-          toast.error(error.response.data.message);
+        } catch (error: unknown) {
+          if (axios.isAxiosError(error)) {
+            toast.error(
+              error.response?.data?.message || "Something went wrong",
+            );
+          } else {
+            toast.error("An unexpected error occurred");
+          }
           set({ loading: false });
         }
       },
@@ -84,7 +101,7 @@ export const useRestaurantStore = create<RestaurantState>()(
           if (response.data.success) {
             set({ loading: false, searchedRestaurant: response.data });
           }
-        } catch (error) {
+        } catch {
           set({ loading: false });
         }
       },
@@ -108,7 +125,6 @@ export const useRestaurantStore = create<RestaurantState>()(
               },
             };
           }
-          // if state.restaruant is undefined then return state
           return state;
         });
       },
@@ -130,7 +146,15 @@ export const useRestaurantStore = create<RestaurantState>()(
           if (response.data.success) {
             set({ singleRestaurant: response.data.restaurant });
           }
-        } catch (error) {}
+        } catch (error: unknown) {
+          if (axios.isAxiosError(error)) {
+            toast.error(
+              error.response?.data?.message || "Something went wrong",
+            );
+          } else {
+            toast.error("An unexpected error occurred");
+          }
+        }
       },
       getRestaurantOrders: async () => {
         try {
@@ -162,8 +186,14 @@ export const useRestaurantStore = create<RestaurantState>()(
             set({ restaurantOrder: updatedOrder });
             toast.success(response.data.message);
           }
-        } catch (error: any) {
-          toast.error(error.response.data.message);
+        } catch (error: unknown) {
+          if (axios.isAxiosError(error)) {
+            toast.error(
+              error.response?.data?.message || "Something went wrong",
+            );
+          } else {
+            toast.error("An unexpected error occurred");
+          }
         }
       },
     }),
