@@ -47,7 +47,7 @@ const Orders = () => {
               </Label>
               <Select
                 onValueChange={(newStatus) =>
-                  handleStatusChange(order._id, newStatus)
+                  handleStatusChange(order._id, newStatus!)
                 }
                 defaultValue={order.status}
               >
