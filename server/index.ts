@@ -4,7 +4,10 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
+
 import connectDB from "./db/connectDB";
+
+import userRoute from "./routes/user.route";
 
 dotenv.config();
 
@@ -23,6 +26,8 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions));
+
+app.use("/api/v1/user", userRoute);
 
 app.use(express.static(path.join(DIRNAME, "/client/dist")));
 app.use("*", (_, res) => {
