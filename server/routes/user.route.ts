@@ -3,6 +3,7 @@ import {
     forgotPassword,
   login,
   logout,
+  resetPassword,
   signup,
   verifyEmail,
 } from "../controller/user.controller";
@@ -14,5 +15,6 @@ router.route("/login").post(login);
 router.route("/logout").post(logout);
 router.route("/verify-email").post(verifyEmail);
 router.route("/forgot-password").post(forgotPassword);
+router.route("/reset-password/:token").post(resetPassword);
 
 export default router;
