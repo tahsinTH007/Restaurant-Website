@@ -2,6 +2,7 @@ import express from "express";
 import {
   createRestaurant,
   getRestaurant,
+  getSingleRestaurant,
   searchRestaurant,
   updateRestaurant,
 } from "../controller/restaurant.controller";
@@ -18,5 +19,5 @@ router
   .route("/")
   .put(isAuthenticated, upload.single("imageFile"), updateRestaurant);
 router.route("/search/:searchText").get(isAuthenticated, searchRestaurant);
-
+router.route("/:id").get(isAuthenticated, getSingleRestaurant);
 export default router;
