@@ -9,6 +9,7 @@ import connectDB from "./db/connectDB";
 
 import userRoute from "./routes/user.route";
 import restaurantRoute from "./routes/restaurant.route";
+import orderRoute from "./routes/order.route";
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use(cors(corsOptions));
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/restaurant", restaurantRoute);
+app.use("/api/v1/order", orderRoute);
 
 app.use(express.static(path.join(DIRNAME, "/client/dist")));
 app.use("*", (_, res) => {
